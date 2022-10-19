@@ -43,10 +43,7 @@ public class CameraController : MonoBehaviour
 
 		Pitch += deltaY;
 		Yaw += deltaX;
-	}
 
-	private void FixedUpdate()
-	{
 		transform.rotation = Quaternion.Euler(Pitch, Yaw, 0.0f);
 	}
 }

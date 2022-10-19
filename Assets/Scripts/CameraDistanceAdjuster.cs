@@ -8,7 +8,7 @@ public class CameraDistanceAdjuster : MonoBehaviour
 	[SerializeField] private float _margin = 1.5f;
 	[SerializeField] private float _minDistance = 2.0f;
 
-	private void FixedUpdate()
+	private void Update()
 	{
 		var ray = new Ray(transform.position, -transform.forward);
 		var somethingGotHit = Physics.Raycast(ray, out var hitInfo, _maxDistance);
