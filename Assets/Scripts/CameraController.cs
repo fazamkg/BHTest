@@ -23,6 +23,7 @@ public class CameraController : MonoBehaviour
 		get => _pitch;
 		set => _pitch = Mathf.Clamp(value, _minPitch, _maxPitch);
 	}
+
 	private float Yaw
 	{
 		get => _yaw;
@@ -42,7 +43,10 @@ public class CameraController : MonoBehaviour
 
 		Pitch += deltaY;
 		Yaw += deltaX;
+	}
 
+	private void FixedUpdate()
+	{
 		transform.rotation = Quaternion.Euler(Pitch, Yaw, 0.0f);
 	}
 }
