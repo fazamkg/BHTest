@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 21354482}
   - component: {fileID: 21354483}
+  - component: {fileID: 21354484}
   m_Layer: 0
   m_Name: CameraOrbitPoint
   m_TagString: Untagged
@@ -170,11 +171,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mouseXInputName: Mouse X
   _mouseYInputName: Mouse Y
-  _minPitch: -90
+  _minPitch: -30
   _maxPitch: 90
   _sensitivity: 6
   _invertX: 0
   _invertY: 1
+--- !u!114 &21354484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 21354481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7182e53eebcaeba47b56884080dc15bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cameraTransform: {fileID: 963194228}
+  _maxDistance: 7.5
+  _margin: 1.5
+  _minDistance: 2
 --- !u!1 &71483267
 GameObject:
   m_ObjectHideFlags: 0
@@ -1092,7 +1109,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.1
   far clip plane: 1000
   field of view: 110
   orthographic: 0
