@@ -37,4 +37,11 @@ public class PlayerMovement : MonoBehaviour
 		_characterController.Move(_verticalVelocity * Time.fixedDeltaTime * Vector3.up);
 		_verticalVelocity = _characterController.velocity.y;
 	}
+
+	public void SetPosition(Vector3 position)
+	{
+		_characterController.enabled = false;
+		transform.position = position;
+		_characterController.enabled = true;
+	}
 }
