@@ -20,4 +20,9 @@ public class Interpolator : MonoBehaviour
 
 		transform.position = Vector3.Lerp(leftValue, rightValue, weight);
 	}
+
+	public void SetTarget(Interpolatable target)
+	{
+		_target = target;
+	}
 }
