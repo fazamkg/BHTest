@@ -30,6 +30,8 @@ public class CameraController : MonoBehaviour
 		set => _yaw = Mathf.Repeat(value, MaxAngle);
 	}
 
+	public Quaternion YawRotation { get => Quaternion.Euler(0.0f, Yaw, 0.0f); }
+
 	private void Update()
 	{
 		var mouseX = Input.GetAxisRaw(_mouseXInputName);
