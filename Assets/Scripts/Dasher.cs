@@ -8,6 +8,7 @@ public class Dasher : MonoBehaviour
 	[SerializeField] private CharacterController _characterController;
 
 	[SerializeField] private float _dashDistance = 15.0f;
+	[SerializeField] private float _castMargin = 0.1f;
 
 	private NetworkIdentity _networkIdentity;
 
@@ -30,7 +31,7 @@ public class Dasher : MonoBehaviour
 		var hit = Physics.CapsuleCast(point1, point2, radius,
 			direction, out var hitInfo, _dashDistance);
 
-		var distance = hit ? hitInfo.distance : _dashDistance;
+		var distance = hit ? Mathf.Max(hitInfo.distance - _castMargin, 0.0f) : _dashDistance;
 
 		var newPosition = origin + direction * distance;
 
