@@ -1,7 +1,10 @@
 using UnityEngine;
+using Mirror;
 
 public class PlayerMovementInput : MonoBehaviour
 {
+	[SerializeField] private NetworkIdentity _networkIdentity;
+
 	[SerializeField] private CameraController _cameraController;
 
 	[SerializeField] private string _horizontalInputName = "Horizontal";
@@ -11,6 +14,8 @@ public class PlayerMovementInput : MonoBehaviour
 
 	private void Update()
 	{
+		if (!_networkIdentity.isLocalPlayer) return;
+
 		var horizontalAxis = Input.GetAxisRaw(_horizontalInputName);
 		var verticalAxis = Input.GetAxisRaw(_verticalInputName);
 

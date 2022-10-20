@@ -265,6 +265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7944e88e98d725d42aa1ebb7dacd0f14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _networkIdentity: {fileID: 2895435929685519338}
   _cameraController: {fileID: 5114516842182634769}
   _horizontalInputName: Horizontal
   _verticalInputName: Vertical
@@ -390,7 +391,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5114516842662661216}
-  - component: {fileID: 4167091353941369064}
   - component: {fileID: 2895435929685519338}
   m_Layer: 0
   m_Name: Player
@@ -416,18 +416,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4167091353941369064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5114516842662661219}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdd046222fd7e8b4da4a2f922120f3e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2895435929685519338
 MonoBehaviour:
   m_ObjectHideFlags: 0
