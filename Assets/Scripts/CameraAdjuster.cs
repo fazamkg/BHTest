@@ -6,7 +6,7 @@ public class CameraAdjuster : MonoBehaviour
 
 	[SerializeField] private float _maxDistance = 7.5f;
 	[SerializeField] private float _minDistance = 2.0f;
-	[SerializeField] private float _marginRadius = 0.75f;
+	[SerializeField] private float _marginRadius = 0.2f;
 
 	private void Update()
 	{
