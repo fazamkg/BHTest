@@ -83,6 +83,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerMovementInput: {fileID: 95280252921369540}
   _characterController: {fileID: 95280252921369543}
+  _interpolatable: {fileID: 95280252921369547}
   _acceleration: 40
   _friction: 4
   _gravity: 25
@@ -114,3 +115,4 @@ MonoBehaviour:
   _playerMovementInput: {fileID: 95280252921369540}
   _characterController: {fileID: 95280252921369543}
   _dashDistance: 15
+  _castMargin: 0.25

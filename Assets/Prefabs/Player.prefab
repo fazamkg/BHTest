@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7373598522355708728}
   - component: {fileID: 4498275069546444622}
-  - component: {fileID: 151333848460936349}
+  - component: {fileID: 7156545355900606102}
   - component: {fileID: 1049520578028803644}
   m_Layer: 0
   m_Name: Player
@@ -51,7 +51,7 @@ MonoBehaviour:
   visible: 0
   m_AssetId: 7413a721f92285f4287a10481221bfdc
   hasSpawned: 0
---- !u!114 &151333848460936349
+--- !u!114 &7156545355900606102
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -102,6 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+  _networkTransform: {fileID: 7156545355900606102}
   _characterController: {fileID: 95280252921369536, guid: d972898f185c11a4fa1b8c79c06786ea, type: 3}
   _visuals: {fileID: 7285858407666903226, guid: 87421ed9577305e44a7a6fcf70967b33, type: 3}
   _camera: {fileID: 6814531844645641878, guid: 5abff961a9b03ee44925b3e2b0101cc3, type: 3}

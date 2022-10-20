@@ -3,6 +3,8 @@ using Mirror;
 
 public class PlayerInitializer : NetworkBehaviour
 {
+	[SerializeField] private NetworkTransform _networkTransform;
+
 	[SerializeField] private GameObject _characterController;
 	[SerializeField] private GameObject _visuals;
 	[SerializeField] private GameObject _camera;
@@ -24,6 +26,7 @@ public class PlayerInitializer : NetworkBehaviour
 		_dasher = characterController.GetComponent<Dasher>();
 		_movementInput.SetNetworkIdentity(netIdentity);
 		_dasher.SetNetworkIdentity(netIdentity);
+		_playerMovement.SetNetworkTransform(_networkTransform);
 
 		var visuals = Instantiate(_visuals, transform.position, transform.rotation);
 		visuals.GetComponent<Interpolator>().SetTarget(_interpolatable);
