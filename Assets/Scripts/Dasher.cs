@@ -5,9 +5,9 @@ public class Dasher : MonoBehaviour
 {
 	[SerializeField] private PlayerMovement _playerMovement;
 	[SerializeField] private PlayerMovementInput _playerMovementInput;
+	[SerializeField] private CharacterController _characterController;
 
-	[SerializeField] private float _dashDistance = 3.0f;
-	[SerializeField] private float _dashTime = 0.05f;
+	[SerializeField] private float _dashDistance = 15.0f;
 
 	private NetworkIdentity _networkIdentity;
 
@@ -18,9 +18,23 @@ public class Dasher : MonoBehaviour
 		var dashInput = Input.GetKeyDown(KeyCode.Mouse0);
 		if (!dashInput) return;
 
-		var dashSpeed = _dashDistance / _dashTime;
+		var origin = _characterController.transform.position;
+		var radius = _characterController.radius;
+		var height = _characterController.height;
 
-		_playerMovement.AddImpulse(dashSpeed * _playerMovementInput.InputDirection);
+		var point1 = origin + radius * Vector3.up;
+		var point2 = origin + height * Vector3.up - radius * Vector3.down;
+
+		var direction = _playerMovementInput.InputDirection;
+
+		var hit = Physics.CapsuleCast(point1, point2, radius,
+			direction, out var hitInfo, _dashDistance);
+
+		var distance = hit ? hitInfo.distance : _dashDistance;
+
+		var newPosition = origin + direction * distance;
+
+		_playerMovement.SetPosition(newPosition);
 	}
 
 	public void SetNetworkIdentity(NetworkIdentity networkIdentity)

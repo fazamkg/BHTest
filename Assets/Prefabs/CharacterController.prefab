@@ -112,5 +112,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerMovement: {fileID: 95280252921369541}
   _playerMovementInput: {fileID: 95280252921369540}
-  _dashDistance: 3
-  _dashTime: 0.05
+  _characterController: {fileID: 95280252921369543}
+  _dashDistance: 15
