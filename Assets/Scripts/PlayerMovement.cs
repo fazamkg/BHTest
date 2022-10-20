@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AcceleratedPlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
 	[SerializeField] private PlayerMovementInput _playerMovementInput;
 

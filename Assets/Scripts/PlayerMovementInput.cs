@@ -22,4 +22,9 @@ public class PlayerMovementInput : MonoBehaviour
 		var globalInputDirection = new Vector3(horizontalAxis, 0.0f, verticalAxis);
 		InputDirection = (_cameraController.YawRotation * globalInputDirection).normalized;
 	}
+
+	public void ConnectCamera(CameraController cameraController)
+	{
+		_cameraController = cameraController;
+	}
 }
