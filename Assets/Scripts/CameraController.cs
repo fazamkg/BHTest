@@ -34,6 +34,8 @@ public class CameraController : MonoBehaviour
 
 	private void Update()
 	{
+		if (Cursor.lockState == CursorLockMode.Confined) return;
+
 		var mouseX = Input.GetAxisRaw(_mouseXInputName);
 		var mouseY = Input.GetAxisRaw(_mouseYInputName);
 

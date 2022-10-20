@@ -2,18 +2,19 @@ using UnityEngine;
 
 public class CursorLocker : MonoBehaviour
 {
-	[SerializeField] private NetworkManagerExtension _networkManager;
-
-	private bool _isLocked;
-
-	private void Awake()
-	{
-		_networkManager.OnClientConnected += Lock;
-	}
+	[SerializeField] private bool _canBeToggled;
+	[SerializeField] private bool _startLocked;
 
 	private void Start()
 	{
-		Unlock();
+		if (_startLocked)
+		{
+			Lock();
+		}
+		else
+		{
+			Unlock();
+		}
 	}
 
 	private void Update()
@@ -23,7 +24,8 @@ public class CursorLocker : MonoBehaviour
 
 	private void ToogleLock()
 	{
-		if (_isLocked)
+		if (!_canBeToggled) return;
+		if (Cursor.lockState == CursorLockMode.Locked)
 		{
 			Unlock();
 		}
@@ -37,13 +39,11 @@ public class CursorLocker : MonoBehaviour
 	{
 		Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = false;
-		_isLocked = true;
 	}
 
 	private void Unlock()
 	{
 		Cursor.lockState = CursorLockMode.Confined;
 		Cursor.visible = true;
-		_isLocked = false;
 	}
 }
