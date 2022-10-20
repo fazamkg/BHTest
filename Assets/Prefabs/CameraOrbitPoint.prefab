@@ -69,6 +69,9 @@ MonoBehaviour:
   _maxDistance: 7.5
   _minDistance: 0
   _marginRadius: 0.2
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!1 &6814531845046936598
 GameObject:
   m_ObjectHideFlags: 0

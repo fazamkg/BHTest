@@ -8,10 +8,13 @@ public class CameraAdjuster : MonoBehaviour
 	[SerializeField] private float _minDistance = 2.0f;
 	[SerializeField] private float _marginRadius = 0.2f;
 
+	[SerializeField] private LayerMask _layerMask;
+
 	private void Update()
 	{
 		var ray = new Ray(transform.position, -transform.forward);
-		var somethingGotHit = Physics.SphereCast(ray, _marginRadius, out var hitInfo, _maxDistance);
+		var somethingGotHit = Physics.SphereCast(ray, _marginRadius,
+			out var hitInfo, _maxDistance, _layerMask.value);
 
 		var position = _cameraTransform.localPosition;
 

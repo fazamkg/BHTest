@@ -10,8 +10,8 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField] private float _friction = 4.0f;
 	[SerializeField] private float _gravity = 14.0f;
 
-	private Vector3 _horizontalVelocity;
 	private float _verticalVelocity;
+	private Vector3 _horizontalVelocity;
 
 	private void FixedUpdate()
 	{
@@ -43,5 +43,13 @@ public class PlayerMovement : MonoBehaviour
 		_characterController.enabled = false;
 		transform.position = position;
 		_characterController.enabled = true;
+	}
+
+	public void AddImpulse(Vector3 impulse)
+	{
+		var horizontalImpulse = impulse;
+		horizontalImpulse.y = 0.0f;
+		_horizontalVelocity += horizontalImpulse;
+		_verticalVelocity += impulse.y;
 	}
 }

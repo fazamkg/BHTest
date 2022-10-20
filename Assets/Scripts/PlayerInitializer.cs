@@ -12,6 +12,7 @@ public class PlayerInitializer : NetworkBehaviour
 	private PlayerMovement _playerMovement;
 	private Interpolatable _interpolatable;
 	private PlayerMovementInput _movementInput;
+	private Dasher _dasher;
 
 	private void Start()
 	{
@@ -20,7 +21,9 @@ public class PlayerInitializer : NetworkBehaviour
 		_playerMovement = characterController.GetComponent<PlayerMovement>();
 		_interpolatable = characterController.GetComponent<Interpolatable>();
 		_movementInput = characterController.GetComponent<PlayerMovementInput>();
+		_dasher = characterController.GetComponent<Dasher>();
 		_movementInput.SetNetworkIdentity(netIdentity);
+		_dasher.SetNetworkIdentity(netIdentity);
 
 		var visuals = Instantiate(_visuals, transform.position, transform.rotation);
 		visuals.GetComponent<Interpolator>().SetTarget(_interpolatable);
