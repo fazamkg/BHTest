@@ -12,6 +12,8 @@ public class Dasher : MonoBehaviour
 
 	private NetworkIdentity _networkIdentity;
 
+	private Health _currentEnemyHealth;
+
 	private void Update()
 	{
 		if (!_networkIdentity.isLocalPlayer) return;
@@ -31,6 +33,12 @@ public class Dasher : MonoBehaviour
 
 		var hit = Physics.CapsuleCast(point1, point2, radius,
 			direction, out var hitInfo, _dashDistance);
+
+		if (hitInfo.collider != null)
+		{
+			var hasEnemyHealth = hitInfo.collider.TryGetComponent(out _currentEnemyHealth);
+			if (hasEnemyHealth) _currentEnemyHealth.TakeHit();
+		}
 
 		var distance = hit ? Mathf.Max(hitInfo.distance - _castMargin, 0.0f) : _dashDistance;
 

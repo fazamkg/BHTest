@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 95280252921369541}
   - component: {fileID: 95280252921369547}
   - component: {fileID: 5953888473573158507}
+  - component: {fileID: 8613745989025222540}
+  - component: {fileID: 7307006773629535701}
   m_Layer: 6
   m_Name: CharacterController
   m_TagString: Untagged
@@ -116,3 +118,32 @@ MonoBehaviour:
   _characterController: {fileID: 95280252921369543}
   _dashDistance: 15
   _castMargin: 0.25
+--- !u!114 &8613745989025222540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 95280252921369536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b9dee160d0091a409ad319b3f32c657, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _meshRenderer: {fileID: 0}
+  _timer: {fileID: 7307006773629535701}
+  _invulnerabilityColor: {r: 1, g: 0, b: 0, a: 1}
+  _invulnerabilityTime: 3
+  _startHitPoints: 3
+--- !u!114 &7307006773629535701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 95280252921369536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7619d0dfd5d24eb4c88bb70f72464e99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

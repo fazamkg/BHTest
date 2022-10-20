@@ -12,31 +12,31 @@ public class PlayerInitializer : NetworkBehaviour
 	[SerializeField] private Vector3 _cameraPosition;
 
 	private PlayerMovement _playerMovement;
-	private Interpolatable _interpolatable;
-	private PlayerMovementInput _movementInput;
-	private Dasher _dasher;
 
 	private void Start()
 	{
 		var characterController = Instantiate(_characterController,
 			transform.position, Quaternion.identity);
 		_playerMovement = characterController.GetComponent<PlayerMovement>();
-		_interpolatable = characterController.GetComponent<Interpolatable>();
-		_movementInput = characterController.GetComponent<PlayerMovementInput>();
-		_dasher = characterController.GetComponent<Dasher>();
-		_movementInput.SetNetworkIdentity(netIdentity);
-		_dasher.SetNetworkIdentity(netIdentity);
+		var interpolatable = characterController.GetComponent<Interpolatable>();
+		var movementInput = characterController.GetComponent<PlayerMovementInput>();
+		var dasher = characterController.GetComponent<Dasher>();
+		var health = characterController.GetComponent<Health>();
+		movementInput.SetNetworkIdentity(netIdentity);
+		dasher.SetNetworkIdentity(netIdentity);
 		_playerMovement.SetNetworkTransform(_networkTransform);
 
 		var visuals = Instantiate(_visuals, transform.position, transform.rotation);
-		visuals.GetComponent<Interpolator>().SetTarget(_interpolatable);
+		visuals.GetComponent<Interpolator>().SetTarget(interpolatable);
+		var meshRenderer = visuals.GetComponentInChildren<MeshRenderer>();
+		health.SetMeshRenderer(meshRenderer);
 
 		if (!isLocalPlayer) return;
 		var cameraTransform = new GameObject("CameraTransform");
 		cameraTransform.transform.parent = visuals.transform;
 		cameraTransform.transform.localPosition = _cameraPosition;
 		var camera = Instantiate(_camera, cameraTransform.transform);
-		_movementInput.ConnectCamera(camera.GetComponent<CameraController>());
+		movementInput.ConnectCamera(camera.GetComponent<CameraController>());
 	}
 
 	private void FixedUpdate()
