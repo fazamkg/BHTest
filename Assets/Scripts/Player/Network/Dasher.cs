@@ -55,6 +55,6 @@ public class Dasher : NetworkBehaviour
 	{
 		var health = networkIdentity.GetComponent<Health>();
 		if (!health) return;
-		health.TakeHit();
+		health.TakeHit(netIdentity);
 	}
 }
