@@ -1,22 +1,25 @@
 using UnityEngine;
 using Mirror;
 
-public class Dasher : MonoBehaviour
+public class Dasher : NetworkBehaviour
 {
-	[SerializeField] private PlayerMovement _playerMovement;
-	[SerializeField] private PlayerMovementInput _playerMovementInput;
-	[SerializeField] private CharacterController _characterController;
-
 	[SerializeField] private float _dashDistance = 15.0f;
 	[SerializeField] private float _castMargin = 0.25f;
 
-	private NetworkIdentity _networkIdentity;
+	private PlayerMovement _playerMovement;
+	private PlayerMovementInput _playerMovementInput;
+	private CharacterController _characterController;
 
-	private Health _currentEnemyHealth;
+	private void Awake()
+	{
+		_playerMovement = GetComponent<PlayerMovement>();
+		_playerMovementInput = GetComponent<PlayerMovementInput>();
+		_characterController = GetComponent<CharacterController>();
+	}
 
 	private void Update()
 	{
-		if (!_networkIdentity.isLocalPlayer) return;
+		if (!isLocalPlayer) return;
 
 		var dashInput = Input.GetKeyDown(KeyCode.Mouse0);
 		if (!dashInput) return;
@@ -36,8 +39,8 @@ public class Dasher : MonoBehaviour
 
 		if (hitInfo.collider != null)
 		{
-			var hasEnemyHealth = hitInfo.collider.TryGetComponent(out _currentEnemyHealth);
-			if (hasEnemyHealth) _currentEnemyHealth.TakeHit();
+			var networkIdentity = hitInfo.collider.GetComponent<NetworkIdentity>();
+			if (networkIdentity) CmdHit(networkIdentity);
 		}
 
 		var distance = hit ? Mathf.Max(hitInfo.distance - _castMargin, 0.0f) : _dashDistance;
@@ -47,8 +50,11 @@ public class Dasher : MonoBehaviour
 		_playerMovement.SetPosition(newPosition, true);
 	}
 
-	public void SetNetworkIdentity(NetworkIdentity networkIdentity)
+	[Command]
+	private void CmdHit(NetworkIdentity networkIdentity)
 	{
-		_networkIdentity = networkIdentity;
+		var health = networkIdentity.GetComponent<Health>();
+		if (!health) return;
+		health.TakeHit();
 	}
 }

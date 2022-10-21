@@ -1,7 +1,8 @@
 using UnityEngine;
 using System;
+using Mirror;
 
-public class Timer : MonoBehaviour
+public class Timer : NetworkBehaviour
 {
 	private float _timeInterval;
 	private float _timer;

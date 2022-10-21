@@ -1,20 +1,24 @@
 using UnityEngine;
-using Mirror;
 
 public class PlayerMovement : MonoBehaviour
 {
-	[SerializeField] private PlayerMovementInput _playerMovementInput;
-	[SerializeField] private CharacterController _characterController;
-	[SerializeField] private Interpolatable _interpolatable;
-
 	[SerializeField] private float _acceleration = 40.0f;
 	[SerializeField] private float _friction = 4.0f;
 	[SerializeField] private float _gravity = 14.0f;
 
+	private PlayerMovementInput _playerMovementInput;
+	private CharacterController _characterController;
+	private Interpolatable _interpolatable;
+
 	private float _verticalVelocity;
 	private Vector3 _horizontalVelocity;
 
-	private NetworkTransform _networkTransform;
+	private void Awake()
+	{
+		_playerMovementInput = GetComponent<PlayerMovementInput>();
+		_characterController = GetComponent<CharacterController>();
+		_interpolatable = GetComponent<Interpolatable>();
+	}
 
 	private void Start()
 	{
@@ -49,17 +53,8 @@ public class PlayerMovement : MonoBehaviour
 	public void SetPosition(Vector3 position, bool skipInterpolation = false)
 	{
 		_characterController.enabled = false;
-		if (skipInterpolation)
-		{
-			_interpolatable.LastPosition = position;
-			_networkTransform.CmdTeleport(position);
-		}
+		if (skipInterpolation) _interpolatable.LastPosition = position;
 		transform.position = position;
 		_characterController.enabled = true;
-	}
-
-	public void SetNetworkTransform(NetworkTransform networkTransform)
-	{
-		_networkTransform = networkTransform;
 	}
 }
