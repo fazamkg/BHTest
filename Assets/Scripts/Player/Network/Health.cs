@@ -1,22 +1,19 @@
 using UnityEngine;
-using System;
 using Mirror;
 
 public class Health : NetworkBehaviour
 {
+	[SerializeField] private Timer _timer;
 	[SerializeField] private MeshRenderer _meshRenderer;
 
 	[SerializeField] private Color _hitColor = Color.red;
 	[SerializeField] private float _noHitsTime = 3.0f;
-
-	private Timer _timer;
 
 	private bool _canTakeHits = true;
 	private Color _defaultColor;
 
 	private void Awake()
 	{
-		_timer = GetComponent<Timer>();
 		_timer.OnTimerReachedEnd += SetStateToCanTakeHits;
 	}
 

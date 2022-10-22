@@ -1,13 +1,14 @@
 using UnityEngine;
 using Mirror;
 
-public class NetworkPlayerChildDeployer : NetworkBehaviour
+public class NetworkPlayerDeployer : NetworkBehaviour
 {
+	[SerializeField] private GameObject _gameObjectToDeploy;
 	[SerializeField] private GameObject _gameObjectToDisable;
 
 	private void Start()
 	{
-		transform.GetChild(0).parent = null;
+		_gameObjectToDeploy.transform.parent = null;
 
 		if (hasAuthority) return;
 		_gameObjectToDisable.SetActive(false);
