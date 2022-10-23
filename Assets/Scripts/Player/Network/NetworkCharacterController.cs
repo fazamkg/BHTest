@@ -7,6 +7,7 @@ public class NetworkCharacterController : NetworkBehaviour
 
 	private void FixedUpdate()
 	{
+		if (!NetworkClient.ready) return;
 		if (!hasAuthority) return;
 		CmdUpdatePosition(_characterController.transform.position);
 	}
