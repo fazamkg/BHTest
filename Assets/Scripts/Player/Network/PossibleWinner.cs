@@ -23,6 +23,12 @@ public class PossibleWinner : NetworkBehaviour
 		_scoreTaker.OnScoreUpdated += CheckIfPlayerWon;
 	}
 
+	private void OnDestroy()
+	{
+		_somebodyWon = false;
+		OnPlayerWon = null;
+	}
+
 	public override void OnStartAuthority()
 	{
 		base.OnStartAuthority();
@@ -30,6 +36,7 @@ public class PossibleWinner : NetworkBehaviour
 		OnPlayerWon += ShowWinnerUI;
 	}
 
+	[Client]
 	private void ShowWinnerUI(NetworkIdentity winner)
 	{
 		_winText.gameObject.SetActive(true);

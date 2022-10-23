@@ -6,16 +6,9 @@ public class Dasher : NetworkBehaviour
 	[SerializeField] private float _dashDistance = 15.0f;
 	[SerializeField] private float _castMargin = 0.25f;
 
-	private PlayerMovement _playerMovement;
-	private PlayerMovementInput _playerMovementInput;
-	private CharacterController _characterController;
-
-	private void Awake()
-	{
-		_playerMovement = GetComponent<PlayerMovement>();
-		_playerMovementInput = GetComponent<PlayerMovementInput>();
-		_characterController = GetComponent<CharacterController>();
-	}
+	[SerializeField] private PlayerMovement _playerMovement;
+	[SerializeField] private PlayerMovementInput _playerMovementInput;
+	[SerializeField] private CharacterController _characterController;
 
 	private void Update()
 	{
@@ -39,7 +32,7 @@ public class Dasher : NetworkBehaviour
 
 		if (hitInfo.collider != null)
 		{
-			var networkIdentity = hitInfo.collider.GetComponent<NetworkIdentity>();
+			var networkIdentity = hitInfo.collider.GetComponentInParent<NetworkIdentity>();
 			if (networkIdentity) CmdHit(networkIdentity);
 		}
 

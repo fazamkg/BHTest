@@ -3,23 +3,18 @@ using Mirror;
 
 public class NetworkCharacterController : NetworkBehaviour
 {
-	private CharacterController _characterController;
-
-	private void Awake()
-	{
-		_characterController = GetComponent<CharacterController>();
-	}
+	[SerializeField] private CharacterController _characterController;
 
 	private void FixedUpdate()
 	{
 		if (!hasAuthority) return;
-		CmdUpdatePosition(transform.position);
+		CmdUpdatePosition(_characterController.transform.position);
 	}
 
 	private void UpdatePosition(Vector3 position)
 	{
 		_characterController.enabled = false;
-		transform.position = position;
+		_characterController.transform.position = position;
 		_characterController.enabled = true;
 	}
 
